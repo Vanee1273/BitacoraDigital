@@ -10,6 +10,8 @@ Este proyecto tiene como propósito principal gestionar y documentar de manera p
 
 ## 🚀 Generación del Proyecto  
 
+## 🛠️ **Generación de Modelos y Migraciones**  
+Para la generación de modelos y migraciones utilizamos los siguientes comandos.  
 ### 📌 Modelos  
 ```sh
 php artisan make:model Alumnos
@@ -89,6 +91,3 @@ Schema::create('UserAdmin', function (Blueprint $table) {
 - 📢 Comparte este proyecto con otros  
 - 🍺 Invita una cerveza o ☕ un café a alguien del equipo  
 - 🤓 Da las gracias públicamente  
-
-# 🛠️ **Generación de Modelos y Migraciones**  
-Para la generación de modelos y migraciones utilizamos los siguientes comandos.  
