@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.d-flex {
+  display: flex;
+  width: 100vw;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  transition: width 0.3s ease-in-out;
+  background-color: black;
+  color: white;
+  position: relative;
+  height: 100vh;
+  padding: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.collapsed {
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.sidebar.collapsed * {
+  display: none; 
+}
+
+/* Botón SIEMPRE visible */
+.sidebar-toggle {
+  position: fixed;
+  top: 10px;
+  left: 260px; 
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.sidebar-toggle i {
+  font-size: 1.5rem;
+}
+
+.sidebar-title {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  white-space: nowrap;
+}
+
+.nav-link {
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.nav-link i {
+  font-size: 1.2rem;
+}
+
+.account {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+}
+
+#mainContent {
+  flex-grow: 1;
+  transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+  width: calc(100% - 250px);
+}
+
+.sidebar.collapsed + #mainContent {
+  width: 100%;
+}
