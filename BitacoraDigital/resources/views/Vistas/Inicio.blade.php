@@ -1,5 +1,9 @@
 @extends('App')
 @section('TITULO','Inicio')
 @section('CONTENIDO')
-<h1>hola</h1>
+<link rel="stylesheet" href="{{ asset('styles/Barra.css') }}">
+<div class="content">
+  <h1>hola</h1>
+</div>
+
 @endsection
