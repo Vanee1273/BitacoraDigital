@@ -1,0 +1,15 @@
+:root
+{
+  --COLORP:#176298;
+  --COLORS:#ccf0ff;
+  --TEXTOP:white;
+  --TEXTOS:black;
+}
+*,*::before,*::after
+{
+  box-sizing: inherit;
+}
+.body 
+{
+  background-color: var(--COLORS);
+}

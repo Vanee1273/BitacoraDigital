@@ -1,9 +1,10 @@
 :root {
-  --sidebar-bg: black;
-  --sidebar-text: white;
-  --button-bg: black;
+  /*--sidebar-bg: #ccf0ff;*/
+  --sidebar-bg:#176298;
+  --sidebar-text: #ccf0ff;
+  --button-bg: #176298;
   --button-text: white;
-  --content-bg: #ffffff;
+  --content-bg: #ccf0ff;
   --sidebar-width: 250px;
   --sidebar-collapsed-width: 0px;
   --toggle-button-size: 40px;
@@ -17,6 +18,7 @@ body {
   overflow-x: hidden;
   display: flex;
   height: 100vh;
+  background-color: var(--content-bg);
 }
 
 .sidebar {
@@ -72,6 +74,7 @@ body {
 
 .content {
   background: var(--content-bg);
+  width: 100%;
   padding: 20px;
   min-height: 100vh;
   transition: margin-left 0.3s ease-in-out;

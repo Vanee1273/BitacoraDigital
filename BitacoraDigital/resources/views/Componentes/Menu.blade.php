@@ -20,7 +20,7 @@
         </li>
         <li class="nav-item">
         <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-plus-lg"></i> Crear incidencia</a></li>
-        <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-file-earmark-pdf"></i> Generar Reporte</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{route('CREAR')}}"><i class="bi bi-file-earmark-pdf"></i> Generar Reporte</a></li>
         <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-people"></i> Grados y Grupos</a></li>
         <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-person"></i> Alumnos</a></li>
         </li>
