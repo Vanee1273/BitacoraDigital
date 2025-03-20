@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alumnos;
+use App\Models\Reportes;
 use Illuminate\Http\Request;
 
 class IncidenciasController extends Controller
@@ -9,9 +11,20 @@ class IncidenciasController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $searchTerm = $request->input('search');
+
+        if ($searchTerm) {
+            $incidencias = Reportes::where('Motivos', 'LIKE', "%$searchTerm%")->get();
+        } else {
+            $incidencias = Reportes::all();
+        }
+
+        $alumnos = Alumnos::all();
+        $estados = Reportes::distinct()->pluck('Status')->filter();
+
+        return view('incidencias.index', compact('incidencias', 'alumnos', 'estados', 'searchTerm'));
     }
 
     /**
@@ -19,7 +32,7 @@ class IncidenciasController extends Controller
      */
     public function create()
     {
-        //
+        return view('incidencias.create');
     }
 
     /**
@@ -27,7 +40,17 @@ class IncidenciasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'Motivos' => 'required',
+            'Descripción' => 'required',
+            'FKIDAlumno' => 'required|exists:Alumnos,id', // Asegura que el alumno exista
+        ]);
+
+        $data = $request->all();
+        $data['FKIDMaestro'] = 1; // Asigna el número fijo (ejemplo: 1)
+
+        Reportes::create($data);
+        return redirect()->route('incidencias.index')->with('success', 'Incidencia creada con éxito');
     }
 
     /**

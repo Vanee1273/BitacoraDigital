@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reportes extends Model
 {
-  protected $fillable = ['FKIDMaestro', 'FKIDAlumno', 'Motivos', 'Descripción', 'Status'];
+  protected $table = 'Reportes';
+
+  protected $fillable = [
+    'Motivos',
+    'Descripción',
+    'FKIDAlumno',
+    'FKIDMaestro',
+    'Status'
+  ];
   public $timestamps = true;
 }
