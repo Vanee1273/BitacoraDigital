@@ -1,7 +1,29 @@
 body {
-    background-color: #D8D8D8;
+    background-color: #e4f0ef;
     font-family: 'Inder', sans-serif;
     font-size: 20px;
+}
+
+/* Estilos para la pagina de inicio */
+.full-height {
+    height: 100vh;
+}
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.title {
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+}
+.btn-custom {
+    font-size: 17px;
+    font-weight: bold;
+    padding: 10px 20px;
+    width: 300px;
+    margin: 10px 0;
 }
 
 /* Estilos para la tarjeta */

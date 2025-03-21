@@ -6,7 +6,7 @@ use App\Http\Controllers\PasswordResetController;
 
 // Ruta principal
 Route::get('/', function () {
-    return view('emails.login');
+    return view('inicio');
 });
 
 // Rutas de autenticación
