@@ -1,6 +1,6 @@
+
 body {
     background-color: #e4f0ef;
-    font-family: 'Inder', sans-serif;
     font-size: 20px;
 }
 
@@ -28,8 +28,8 @@ body {
 
 /* Estilos para la tarjeta */
 .card {
-    width: 500px;
-    height: 550px;
+    width: 360px;
+    height: 500px;
     box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10%;
     overflow: hidden;

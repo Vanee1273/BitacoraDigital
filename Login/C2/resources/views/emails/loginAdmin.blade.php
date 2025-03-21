@@ -7,7 +7,7 @@
         <div class="">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="text-center p-3 pt-4">Iniciar sesion Administrador</h3>
+                    <h3 class="text-center p-2 pt-3">Iniciar sesion Administrador</h3>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login.submit') }}">
