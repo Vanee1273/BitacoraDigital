@@ -66,7 +66,7 @@ class IncidenciasController extends Controller
      */
     public function edit(string $id)
     {
-        //
+       
     }
 
     /**
@@ -74,14 +74,28 @@ class IncidenciasController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+        $request->validate([
+            'Motivos' => 'required',
+            'Descripción' => 'required',
+            'Status' => 'required|in:Leído,No Leído',
+            'FKIDAlumno' => 'required|exists:Alumnos,id',
+        ]);
+
+        $incidencia = Reportes::findOrFail($id);
+        $incidencia->update($request->all());
+
+        return redirect()->route('incidencias.index')->with('success', 'Incidencia actualizada con éxito');
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {
-        //
+    { 
+        $incidencia = Reportes::findOrFail($id);
+        $incidencia->delete();
+        
+        return redirect()->route('incidencias.index')->with('success', 'Incidencia eliminada.');
     }
 }
