@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alumnos;
 use App\Models\Reportes;
 use Illuminate\Http\Request;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 class IncidenciasController extends Controller
 {
     /**
@@ -78,8 +78,6 @@ class IncidenciasController extends Controller
         $request->validate([
             'Motivos' => 'required',
             'Descripción' => 'required',
-            'Status' => 'required|in:Leído,No Leído',
-            'FKIDAlumno' => 'required|exists:Alumnos,id',
         ]);
 
         $incidencia = Reportes::findOrFail($id);
@@ -97,5 +95,12 @@ class IncidenciasController extends Controller
         $incidencia->delete();
         
         return redirect()->route('incidencias.index')->with('success', 'Incidencia eliminada.');
+    }
+    
+    public function exportPdf($id)
+    {
+        $incidencia = Reportes::with(['alumno', 'maestro'])->findOrFail($id); // Cargar relaciones
+        $pdf = Pdf::loadView('pdf.incidencia', compact('incidencia'));
+        return $pdf->download('incidencia_' . $incidencia->id . '.pdf');
     }
 }

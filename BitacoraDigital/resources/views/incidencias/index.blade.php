@@ -73,17 +73,19 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Motivo</label>
-                                                    <input type="text" class="form-control" value="{{ $incidencia->Motivos }}" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Descripción</label>
-                                                    <textarea class="form-control" rows="3" required>{{ $incidencia->Descripción }}</textarea>
-                                                </div>
-                                                <button type="submit" class="btn btn-success">Actualizar</button>
-                                            </form>
+                                        <form method="POST" action="{{ route('incidencias.update', $incidencia->id) }}">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="mb-3">
+                                                <label class="form-label">Motivo</label>
+                                                <input type="text" class="form-control" name="Motivos" value="{{ $incidencia->Motivos }}" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Descripción</label>
+                                                <textarea class="form-control" name="Descripción" rows="3" required>{{ $incidencia->Descripción }}</textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-success">Actualizar</button>
+                                        </form>
                                         </div>
                                     </div>
                                 </div>
@@ -132,6 +134,7 @@
                                         {{ $incidencia->Status }}
                                     </span></p>
                                         </div>
+                                        <a href="{{ route('incidencias.pdf', $incidencia->id) }}" class="btn btn-primary">Exportar a PDF</a>
                                     </div>
                                 </div>
                             </div>
