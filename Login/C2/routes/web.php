@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\IncidenciasController;
 
 // Ruta principal
 Route::get('/', function () {
@@ -15,7 +16,11 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Ruta de bienvenida después del login
-Route::get('/welcome', [AuthController::class, 'welcome'])->name('welcome');
+Route::get('/welcome', function () {
+    return view('Componentes/Menu');
+  })->name('welcome');
+  
+Route::get('/Incidencias/Nueva', [IncidenciasController::class, 'CREAR'])->name('CREAR');
 
 // Rutas para restablecimiento de contraseña
 Route::get('/reset', [PasswordResetController::class, 'showLinkRequestForm'])->name('password.request');
@@ -35,3 +40,15 @@ Route::get('/admin/welcome', [AuthController::class, 'adminWelcome'])->name('adm
 
 // Ruta para cerrar sesión
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+//Rutas para Reportes y control maestros
+Route::get('/Incidencias', [IncidenciasController::class, 'index'])->name('incidencias.index');
+
+Route::get('/incidencias/create', [IncidenciasController::class, 'create'])->name('incidencias.create');
+
+Route::post('/incidencias/store', [IncidenciasController::class, 'store'])->name('incidencias.store');
+Route::delete('/incidencias/{id}', [IncidenciasController::class, 'destroy'])->name('incidencias.destroy');
+Route::put('/incidencias/{id}', [IncidenciasController::class, 'update'])->name('incidencias.update');
+
+Route::get('/incidencias/{id}/pdf', [IncidenciasController::class, 'exportPdf'])->name('incidencias.pdf');
