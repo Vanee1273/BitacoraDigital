@@ -106,13 +106,13 @@ public function logout(Request $request)
 {
     if (Auth::guard('admin')->check()) {
         Auth::guard('admin')->logout();
-    } else {
-        Auth::logout();
+        return redirect()->route('admin.login')->with('message', 'Sesión de administrador cerrada correctamente.');
+    } elseif (Auth::check()) {
+        Auth::logout(); 
+        return redirect()->route('login')->with('message', 'Sesión cerrada correctamente.');
     }
-
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
 
     return redirect()->route('login');
 }
+
 }

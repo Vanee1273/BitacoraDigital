@@ -38,9 +38,9 @@
                                 {{ __('Iniciar Sesión') }}
                             </button>
 
-                            <a class="mt-3 btn btn-link" href="{{ route('password.request') }}">
-                                {{ __('Reestablecer contraseña') }}
-                            </a>
+                            <a class="mt-3 btn text-white border-0" href="{{ route('password.request') }}">
+    {{ __('Reestablecer contraseña') }}
+</a>
                         </div>
                     </form>
                 </div>

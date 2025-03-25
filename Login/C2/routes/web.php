@@ -13,7 +13,8 @@ Route::get('/', function () {
 // Rutas de autenticación
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
 // Ruta de bienvenida después del login
 Route::get('/welcome', function () {

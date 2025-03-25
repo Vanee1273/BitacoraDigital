@@ -14,7 +14,7 @@
 
                         <div class="form-group mb-1">
                             <label for="email">{{ __('Correo') }}</label>
-                            <input id="email" type="email" class="mt-2 form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <input autofocus id="email" type="email" class="mt-2 form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -36,10 +36,10 @@
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Iniciar Sesión') }}
                             </button>
+                            <a class="mt-3 btn text-white border-0" href="{{ route('password.request') }}">
+    {{ __('Reestablecer contraseña') }}
+</a>
 
-                            <a class="mt-3 btn btn-link" href="{{ route('password.request') }}">
-                                {{ __('Reestablecer contraseña') }}
-                            </a>
                         </div>
                     </form>
                 </div>

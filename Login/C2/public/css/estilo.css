@@ -1,28 +1,57 @@
+:root {
+    --sidebar-bg: #176298;
+    --sidebar-text: #ccf0ff;
+    --button-bg: #ccf0ff;
+    --button-text: white;
+    --content-bg: #ccf0ff;
+    --sidebar-width: 250px;
+    --sidebar-collapsed-width: 0px;
+    --toggle-button-size: 40px;
+    --toggle-button-offset: 10px;
+    --content-left-margin: 50px;
+    
+    --background-color: #ccf0ff; /* Fondo actualizado */
+    --title-font-size: 2.5rem;
+    --btn-font-size: 17px;
+    --btn-width: 300px;
+    --btn-primary-bg: #0056b3;
+    --btn-primary-hover: #ccf0ff;
+    --card-bg: #176298; /* Tarjeta con el color de fondo */
+    --card-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+    --card-radius: 10%;
+    --navbar-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --navbar-btn-border: #176298;
+    --navbar-btn-color: #484848;
+}
 
 body {
-    background-color: #e4f0ef;
+    background-color: var(--background-color);
     font-size: 20px;
 }
 
-/* Estilos para la pagina de inicio */
+/* Estilos para la página de inicio */
 .full-height {
     height: 100vh;
 }
+
 .center-content {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
+
 .title {
     margin-bottom: 30px;
-    font-size: 2.5rem;
+    font-size: var(--title-font-size);
+    color: white; /* Título en blanco */
 }
+
 .btn-custom {
-    font-size: 17px;
+    font-size: var(--btn-font-size);
     font-weight: bold;
     padding: 10px 20px;
-    width: 300px;
+    width: var(--btn-width);
     margin: 10px 0;
 }
 
@@ -30,10 +59,11 @@ body {
 .card {
     width: 360px;
     height: 500px;
-    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 10%;
+    box-shadow: var(--card-shadow);
+    border-radius: var(--card-radius);
     overflow: hidden;
-    background-color: #CCF0FF;
+    background-color: var(--card-bg); /* Tarjeta con el color ajustado */
+    color: white; /* Todo el texto dentro de la tarjeta será blanco */
 }
 
 .card-body {
@@ -50,9 +80,9 @@ body {
 }
 
 .btn-primary {
-    background-color: #00D1E0;
-    border: none;
-    color: black;
+    background-color: white; /* Fondo blanco */
+    border: 2px solid #0056b3; /* Borde azul */
+    color: black; /* Letras negras */
     width: 280px;
     font-family: 'Inder', sans-serif;
     font-size: 20px;
@@ -60,23 +90,39 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #ccf0ff; /* Hover azul claro */
+    color: black; /* Letras negras en hover */
 }
 
-.text-decoration-none {
-    color: #007bff;
-    display: block;
+.btn-secondary {
+    background-color: white; /* Fondo blanco */
+    border: 2px solid #0056b3; /* Borde azul */
+    color: black; /* Letras negras */
+    width: 280px;
+    font-family: 'Inder', sans-serif;
+    font-size: 20px;
     text-align: center;
-    margin-top: 10px;
 }
 
-.text-decoration-none:hover {
-    text-decoration: underline;
+.btn-secondary:hover {
+    background-color: white; /* Sin cambio de color en hover */
+    color: black; /* Letras negras */
+}
+
+.btn-reset-password {
+    background-color: white; /* Fondo blanco */
+    border: 2px solid #0056b3; /* Borde azul */
+    color: black; /* Letras negras */
+    width: 280px;
+    font-family: 'Inder', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    transition: none; /* Sin hover */
 }
 
 /* Estilos para el Navbar */
 .navbar {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--navbar-shadow);
     gap: 1rem;
 }
 
@@ -91,21 +137,21 @@ body {
 
 /* Estilos para los botones del Navbar */
 .navbar .btn-primary {
-    background-color: #00D1E0;
+    background-color: var(--btn-primary-bg);
     border: none;
-    color: black;
+    color: var(--button-text);
     font-family: 'Inder', sans-serif;
     font-size: 20px;
 }
 
 .navbar .btn-outline-primary {
-    border-color: #00D1E0;
-    color: #484848;
+    border-color: var(--navbar-btn-border);
+    color: var(--navbar-btn-color);
     font-family: 'Inder', sans-serif;
     font-size: 20px;
 }
 
 .navbar .btn-outline-primary:hover {
-    background-color: #00D1E0;
-    color: black;
+    background-color: var(--btn-primary-bg);
+    color: var(--button-text);
 }
