@@ -7,7 +7,7 @@ use App\Http\Controllers\IncidenciasController;
 
 // Ruta principal
 Route::get('/', function () {
-    return view('inicio');
+  return view('inicio');
 });
 
 // Rutas de autenticación
@@ -18,9 +18,9 @@ Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logo
 
 // Ruta de bienvenida después del login
 Route::get('/welcome', function () {
-    return view('Componentes/Menu');
-  })->name('welcome');
-  
+  return view('Componentes/Menu');
+})->name('welcome');
+
 Route::get('/Incidencias/Nueva', [IncidenciasController::class, 'CREAR'])->name('CREAR');
 
 // Rutas para restablecimiento de contraseña
@@ -31,7 +31,7 @@ Route::post('/password/reset', [PasswordResetController::class, 'reset'])->name(
 
 // Ruta para el formulario de inicio de sesión de administradores
 Route::get('/admin/login', function () {
-    return view('emails.loginAdmin');
+  return view('emails.loginAdmin');
 })->name('admin.login');
 
 // Rutas para administradores
@@ -49,7 +49,12 @@ Route::get('/Incidencias', [IncidenciasController::class, 'index'])->name('incid
 Route::get('/incidencias/create', [IncidenciasController::class, 'create'])->name('incidencias.create');
 
 Route::post('/incidencias/store', [IncidenciasController::class, 'store'])->name('incidencias.store');
+
 Route::delete('/incidencias/{id}', [IncidenciasController::class, 'destroy'])->name('incidencias.destroy');
 Route::put('/incidencias/{id}', [IncidenciasController::class, 'update'])->name('incidencias.update');
 
 Route::get('/incidencias/{id}/pdf', [IncidenciasController::class, 'exportPdf'])->name('incidencias.pdf');
+
+Route::get('/incidencias/no-leidas', [IncidenciasController::class, 'noLeidas'])->name('incidencias.noLeidas');
+
+Route::get('/incidencias/{id}', [IncidenciasController::class, 'show'])->name('incidencias.show');

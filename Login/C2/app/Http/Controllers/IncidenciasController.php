@@ -10,99 +10,102 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class IncidenciasController extends Controller
 {
-/**
-     * Display a listing of the resource.
-     */
-    public function index(Request $request)
-    {
-        $searchTerm = $request->input('search');
+  /**
+   * Display a listing of the resource.
+   */
+  public function index(Request $request)
+  {
+    $searchTerm = $request->input('search');
 
-        if ($searchTerm) {
-            $incidencias = Reportes::where('Motivos', 'LIKE', "%$searchTerm%")->get();
-        } else {
-            $incidencias = Reportes::all();
-        }
-
-        $alumnos = Alumnos::all();
-        $estados = Reportes::distinct()->pluck('Status')->filter();
-
-        return view('incidencias.index', compact('incidencias', 'alumnos', 'estados', 'searchTerm'));
+    if ($searchTerm) {
+      $incidencias = Reportes::where('Motivos', 'LIKE', "%$searchTerm%")->get();
+    } else {
+      $incidencias = Reportes::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('incidencias.create');
-    }
+    $alumnos = Alumnos::all();
+    $estados = Reportes::distinct()->pluck('Status')->filter();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'Motivos' => 'required',
-            'Descripción' => 'required',
-            'FKIDAlumno' => 'required|exists:Alumnos,id', // Asegura que el alumno exista
-        ]);
+    return view('incidencias.index', compact('incidencias', 'alumnos', 'estados', 'searchTerm'));
+  }
 
-        $data = $request->all();
-        $data['FKIDMaestro'] = 1; // Asigna el número fijo (ejemplo: 1)
+  /**
+   * Show the form for creating a new resource.
+   */
+  public function create()
+  {
+    return view('incidencias.create');
+  }
 
-        Reportes::create($data);
-        return redirect()->route('incidencias.index')->with('success', 'Incidencia creada con éxito');
-    }
+  /**
+   * Store a newly created resource in storage.
+   */
+  public function store(Request $request)
+  {
+    $request->validate([
+      'Motivos' => 'required',
+      'Descripción' => 'required',
+      'FKIDAlumno' => 'required|exists:Alumnos,id', // Asegura que el alumno exista
+    ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+    $data = $request->all();
+    $data['Status'] = 'No Leído';
+    $data['FKIDMaestro'] = 1; // Asigna el número fijo (ejemplo: 1)
+    Reportes::create($data);
+    return redirect()->route('incidencias.index')->with('success', 'Incidencia creada con éxito');
+  }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-       
-    }
+  /**
+   * Display the specified resource.
+   */
+  public function show(string $id)
+  {
+    $incidencia = Reportes::with('alumno')->findOrFail($id);
+    return view('incidencias.show', compact('incidencia'));
+  }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        
-        $request->validate([
-            'Motivos' => 'required',
-            'Descripción' => 'required',
-        ]);
+  /**
+   * Show the form for editing the specified resource.
+   */
+  public function edit(string $id) {}
 
-        $incidencia = Reportes::findOrFail($id);
-        $incidencia->update($request->all());
+  /**
+   * Update the specified resource in storage.
+   */
+  public function update(Request $request, string $id)
+  {
 
-        return redirect()->route('incidencias.index')->with('success', 'Incidencia actualizada con éxito');
-    }
+    $request->validate([
+      'Motivos' => 'required',
+      'Descripción' => 'required',
+    ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    { 
-        $incidencia = Reportes::findOrFail($id);
-        $incidencia->delete();
-        
-        return redirect()->route('incidencias.index')->with('success', 'Incidencia eliminada.');
-    }
-    
-    public function exportPdf($id)
-    {
-        $incidencia = Reportes::with(['alumno', 'maestro'])->findOrFail($id); // Cargar relaciones
-        $pdf = Pdf::loadView('pdf.incidencia', compact('incidencia'));
-        return $pdf->download('incidencia_' . $incidencia->id . '.pdf');
-    }
+    $incidencia = Reportes::findOrFail($id);
+    $incidencia->update($request->all());
+
+    return redirect()->route('incidencias.index')->with('success', 'Incidencia actualizada con éxito');
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   */
+  public function destroy(string $id)
+  {
+    $incidencia = Reportes::findOrFail($id);
+    $incidencia->delete();
+
+    return redirect()->route('incidencias.index')->with('success', 'Incidencia eliminada.');
+  }
+
+  public function exportPdf($id)
+  {
+    $incidencia = Reportes::with(['alumno', 'maestro'])->findOrFail($id); // Cargar relaciones
+    $pdf = Pdf::loadView('pdf.incidencia', compact('incidencia'));
+    return $pdf->download('incidencia_' . $incidencia->id . '.pdf');
+  }
+  public function noLeidas()
+  {
+    $incidencias = Reportes::where('Status', 'No Leído')->get();
+    return view('incidencias.noLeidas', compact('incidencias'));
+  }
 }

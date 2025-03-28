@@ -16,7 +16,7 @@
       </h5>
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('welcome') }}"><i class="bi bi-house-door"></i> Home</a>
+          <a class="nav-link" href="{{ route('incidencias.noLeidas') }}"><i class="bi bi-house-door"></i> Home</a>
         </li>
         <li class="nav-item">
         <li class="nav-item"><a class="nav-link" href="{{ route('incidencias.index') }}"><i class="bi bi-plus-lg"></i>Incidencia</a></li>
@@ -32,7 +32,7 @@
           <form action="{{ route('logout') }}" method="POST" style="display: inline;">
             @csrf
             <button type="submit" class="nav-link" style="background: none; border: none; padding: 0; color: inherit; cursor: pointer;">
-            <i class="bi bi-box-arrow-right"></i> Logout
+              <i class="bi bi-box-arrow-right"></i> Logout
             </button>
           </form>
         </li>
