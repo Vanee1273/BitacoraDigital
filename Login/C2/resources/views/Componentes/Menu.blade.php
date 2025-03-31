@@ -16,12 +16,12 @@
       </h5>
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('incidencias.noLeidas') }}"><i class="bi bi-house-door"></i> Home</a>
+          <a class="nav-link" href="{{ route('welcome') }}"><i class="bi bi-house-door"></i> Home</a>
         </li>
         <li class="nav-item">
         <li class="nav-item"><a class="nav-link" href="{{ route('incidencias.index') }}"><i class="bi bi-plus-lg"></i>Incidencia</a></li>
-        <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-people"></i> Grados y Grupos</a></li>
-        <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-person"></i> Alumnos</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ route('alumnos.index') }}"><i class="bi bi-people"></i> Alumnos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-person"></i> Profesores</a></li>
         </li>
       </ul>
       <ul class="nav flex-column account">
@@ -45,5 +45,6 @@
   </div>
 
   <script src="{{ asset('js/scripts.js') }}?v={{ time() }}"></script>
+
 
 </body>

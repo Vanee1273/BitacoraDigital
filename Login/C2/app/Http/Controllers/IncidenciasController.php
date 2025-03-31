@@ -23,7 +23,8 @@ class IncidenciasController extends Controller
       $incidencias = Reportes::all();
     }
 
-    $alumnos = Alumnos::all();
+    // Filtramos los alumnos activos (suponiendo que el campo en la base de datos se llama "activo")
+    $alumnos = Alumnos::where('Status', 'Activo')->get();
     $estados = Reportes::distinct()->pluck('Status')->filter();
 
     return view('incidencias.index', compact('incidencias', 'alumnos', 'estados', 'searchTerm'));
@@ -34,7 +35,9 @@ class IncidenciasController extends Controller
    */
   public function create()
   {
-    return view('incidencias.create');
+    // Filtramos los alumnos activos para mostrar en el formulario de creación
+    $alumnos = Alumnos::where('Status', 'Activo')->get();
+    return view('incidencias.create', compact('alumnos'));
   }
 
   /**
@@ -74,7 +77,6 @@ class IncidenciasController extends Controller
    */
   public function update(Request $request, string $id)
   {
-
     $request->validate([
       'Motivos' => 'required',
       'Descripción' => 'required',
@@ -103,6 +105,7 @@ class IncidenciasController extends Controller
     $pdf = Pdf::loadView('pdf.incidencia', compact('incidencia'));
     return $pdf->download('incidencia_' . $incidencia->id . '.pdf');
   }
+
   public function noLeidas()
   {
     $incidencias = Reportes::where('Status', 'No Leído')->get();

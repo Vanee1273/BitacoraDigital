@@ -4,22 +4,18 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\IncidenciasController;
+use App\Http\Controllers\AlumnosController;
 
 // Ruta principal
 Route::get('/', function () {
   return view('inicio');
-});
+})->name('/');
 
 // Rutas de autenticación
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
-
-// Ruta de bienvenida después del login
-Route::get('/welcome', function () {
-  return view('Componentes/Menu');
-})->name('welcome');
 
 Route::get('/Incidencias/Nueva', [IncidenciasController::class, 'CREAR'])->name('CREAR');
 
@@ -55,6 +51,15 @@ Route::put('/incidencias/{id}', [IncidenciasController::class, 'update'])->name(
 
 Route::get('/incidencias/{id}/pdf', [IncidenciasController::class, 'exportPdf'])->name('incidencias.pdf');
 
-Route::get('/incidencias/no-leidas', [IncidenciasController::class, 'noLeidas'])->name('incidencias.noLeidas');
+Route::get('/incidencias/no-leidas', [IncidenciasController::class, 'noLeidas'])->name('welcome');
 
 Route::get('/incidencias/{id}', [IncidenciasController::class, 'show'])->name('incidencias.show');
+
+//Rutas para administrar alumnos
+
+Route::get('alumnos', [AlumnosController::class, 'index'])->name('alumnos.index');
+Route::get('alumnos/create', [AlumnosController::class, 'create'])->name('alumnos.create');
+Route::post('alumnos', [AlumnosController::class, 'store'])->name('alumnos.store');
+Route::post('alumnos/{id}/dar-de-baja', [AlumnosController::class, 'darDeBaja'])->name('alumnos.darDeBaja');
+// Ruta para dar de alta al alumno
+Route::post('alumnos/dar-de-alta/{id}', [AlumnosController::class, 'darDeAlta'])->name('alumnos.darDeAlta');

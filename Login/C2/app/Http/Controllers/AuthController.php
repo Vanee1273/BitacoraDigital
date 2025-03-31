@@ -109,10 +109,10 @@ public function logout(Request $request)
         return redirect()->route('admin.login')->with('message', 'Sesión de administrador cerrada correctamente.');
     } elseif (Auth::check()) {
         Auth::logout(); 
-        return redirect()->route('login')->with('message', 'Sesión cerrada correctamente.');
+        return redirect()->route('/')->with('message', 'Sesión cerrada correctamente.');
     }
 
-    return redirect()->route('login');
+    return redirect()->route('/');
 }
 
 }

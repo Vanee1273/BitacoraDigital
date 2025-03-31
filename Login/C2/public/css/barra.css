@@ -1,116 +1,149 @@
 :root {
-    /*--sidebar-bg: #ccf0ff;*/
-    --sidebar-bg:#176298;
-    --sidebar-text: #ccf0ff;
-    --button-bg: #176298;
-    --button-text: white;
-    --content-bg: #ccf0ff;
-    --sidebar-width: 250px;
-    --sidebar-collapsed-width: 0px;
-    --toggle-button-size: 40px;
-    --toggle-button-offset: 10px;
-    --content-left-margin: 50px;
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    height: 100vh;
-    background-color: var(--content-bg);
-  }
-  
+  --sidebar-bg: #176298;
+  --sidebar-text: #ccf0ff;
+  --button-bg: #176298;
+  --button-text: white;
+  --content-bg: #ccf0ff;
+  --sidebar-width: 250px;
+  --sidebar-collapsed-width: 0px;
+  --toggle-button-size: 40px;
+  --toggle-button-offset: 10px;
+  --content-left-margin: 50px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100vh;
+  background-color: var(--content-bg);
+}
+
+.sidebar {
+  position: fixed; /* Fija el sidebar */
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  transition: width 0.3s ease-in-out;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1050; /* Asegura que el sidebar esté sobre otros elementos */
+}
+
+.sidebar.collapsed {
+  width: var(--sidebar-collapsed-width);
+  padding: 0;
+}
+
+.sidebar.collapsed .sidebar-title,
+.sidebar.collapsed .nav-link {
+  display: none;
+}
+
+.sidebar-toggle {
+  position: absolute;
+  top: var(--toggle-button-offset);
+  left: 100%;
+  margin-left: -var(--toggle-button-size);
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 1060; /* Mantiene el toggle encima del sidebar */
+  font-size: 1.5rem;
+}
+
+.nav-link {
+  color: var(--sidebar-text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  padding: 10px;
+}
+
+.nav-link i {
+  font-size: 1.2rem;
+}
+
+.content {
+  background: var(--content-bg);
+  width: 100%;
+  padding: 20px;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease-in-out;
+  margin-left: var(--content-left-margin);
+}
+
+.sidebar.collapsed + .content {
+  margin-left: var(--sidebar-collapsed-width);
+}
+
+.account {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.nav-link {
+  color: var(--sidebar-text) !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  padding: 10px;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+  text-decoration: underline;
+  color: white !important;
+}
+
+.nav-link.active {
+  text-decoration: underline;
+  background-color: transparent;
+  color: white !important;
+}
+
+/* Asegura que el sidebar y el toggle estén por encima de otros elementos */
+.sidebar, .sidebar-toggle {
+  z-index: 1050;
+}
+
+@media (max-width: 768px) {
+  /* Ajusta la barra lateral para pantallas pequeñas */
   .sidebar {
-    width: var(--sidebar-width);
-    transition: width 0.3s ease-in-out;
-    background-color: var(--sidebar-bg);
-    color: var(--sidebar-text);
-    height: 100vh;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    position: relative;
+      z-index: 1050; /* Asegura que el sidebar esté sobre el contenido */
+      position: fixed;
+      width: 80%; /* O ajusta al tamaño que prefieras en dispositivos móviles */
   }
-  
-  .sidebar.collapsed {
-    width: var(--sidebar-collapsed-width);
-    padding: 0;
-  }
-  
-  .sidebar.collapsed .sidebar-title,
-  .sidebar.collapsed .nav-link {
-    display: none;
-  }
-  
+
   .sidebar-toggle {
-    position: absolute;
-    top: var(--toggle-button-offset);
-    left: 100%;
-    margin-left: -var(--toggle-button-size);
-    background-color: var(--button-bg);
-    color: var(--button-text);
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    z-index: 1000;
-    font-size: 1.5rem;
+      z-index: 1060; /* Asegura que el toggle esté sobre el sidebar */
   }
-  
-  .nav-link {
-    color: var(--sidebar-text);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    white-space: nowrap;
-    padding: 10px;
-  }
-  
-  .nav-link i {
-    font-size: 1.2rem;
-  }
-  
+
   .content {
-    background: var(--content-bg);
-    width: 100%;
-    padding: 20px;
-    min-height: 100vh;
-    transition: margin-left 0.3s ease-in-out;
-    margin-left: var(--content-left-margin);
+      margin-left: 0; /* El contenido ya no se desplaza al abrir el sidebar en dispositivos móviles */
   }
-  
-  .sidebar.collapsed + .content {
-    margin-left: var(--sidebar-collapsed-width);
-  }
-  
-  .account {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    padding: 10px 0;
-  }
-  .nav-link {
-    color: var(--sidebar-text) !important; /* Mantiene el color blanco */
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    white-space: nowrap;
-    padding: 10px;
-    text-decoration: none;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .nav-link:hover,
-  .nav-link:focus {
-    background-color: rgba(255, 255, 255, 0.2); /* Fondo ligero al hacer hover */
-    text-decoration: underline; /* Subraya al pasar el cursor */
-    color: white !important; /* Mantiene el texto en blanco */
-  }
-  
-  .nav-link.active {
-    text-decoration: underline; /* Subraya cuando está seleccionado */
-    background-color: transparent; /* Mantiene el fondo original */
-    color: white !important; /* Mantiene el color blanco */
-  }
-  
+}
+
+/* Asegura que el sidebar esté fijo y mueva el contenido al abrirse */
+.sidebar-toggle {
+  z-index: 1060;
+}
+
+.sidebar.open + .content {
+  margin-left: var(--sidebar-width); /* Mueve el contenido hacia la derecha cuando se abre el sidebar */
+}
