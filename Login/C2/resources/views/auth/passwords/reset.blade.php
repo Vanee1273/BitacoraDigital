@@ -26,7 +26,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group mt-5">
+                        <div class="form-group mt-2">
                             <label for="password">{{ __('Contraseña') }}</label>
                             <input id="password" type="password" class="mt-2 form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                             @error('password')
@@ -36,12 +36,12 @@
                             @enderror
                         </div>
 
-                        <div class="form-group mt-5">
+                        <div class="form-group mt-2">
                             <label for="password-confirm">{{ __('Confirmar Contraseña') }}</label>
                             <input id="password-confirm" type="password" class="mt-2 form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
 
-                        <div class="form-group text-center mt-5">
+                        <div class="form-group text-center mt-2">
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Restablecer contraseña') }}
                             </button>

@@ -29,7 +29,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group text-center mt-5">
+                        <div class="form-group text-center mt-2">
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Enviar link de restablecimiento de contraseña') }}
                             </button>

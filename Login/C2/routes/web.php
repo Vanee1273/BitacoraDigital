@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\AdminForgotPasswordController;
 use App\Http\Controllers\IncidenciasController;
 
 // Ruta principal
@@ -34,10 +35,28 @@ Route::get('/admin/login', function () {
   return view('emails.loginAdmin');
 })->name('admin.login');
 
-// Rutas para administradores
-Route::get('/admin/login', [AuthController::class, 'showAdminLoginForm'])->name('admin.login');
-Route::post('/admin/login', [AuthController::class, 'adminLogin'])->name('admin.login.submit');
-Route::get('/admin/welcome', [AuthController::class, 'adminWelcome'])->name('admin.welcome');
+// Rutas de administrador
+Route::prefix('admin')->group(function() {
+  Route::get('/login', [AuthController::class, 'showAdminLoginForm'])->name('admin.login');
+  Route::post('/login', [AuthController::class, 'adminLogin'])->name('admin.login.submit');
+  Route::get('/welcome', [AuthController::class, 'adminWelcome'])->name('admin.welcome')->middleware('auth:admin');
+  Route::post('/logout', [AuthController::class, 'logout'])->name('admin.logout');
+
+    // Solicitud de restablecimiento
+    Route::get('/password/reset', [AdminForgotPasswordController::class, 'showLinkRequestForm'])
+         ->name('admin.password.request');
+         
+    Route::post('/password/email', [AdminForgotPasswordController::class, 'sendResetLinkEmail'])
+         ->name('admin.password.email');
+    
+    // Formulario de nueva contraseña
+    Route::get('/password/reset/{token}', [AdminForgotPasswordController::class, 'showResetForm'])
+         ->name('admin.password.reset');
+    
+    // Actualización de contraseña
+    Route::post('/password/reset', [AdminForgotPasswordController::class, 'reset'])
+         ->name('admin.password.update');
+});
 
 // Ruta para cerrar sesión
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

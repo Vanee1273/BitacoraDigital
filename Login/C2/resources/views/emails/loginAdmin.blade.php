@@ -10,7 +10,7 @@
                     <h3 class="text-center p-2 pt-3">Iniciar sesion Administrador</h3>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login.submit') }}">
+                    <form method="POST" action="{{ route('admin.login.submit') }}">
                         @csrf
 
                         <div class="form-group mb-1">
@@ -23,7 +23,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group mt-5">
+                        <div class="form-group mt-2">
                             <label for="password">{{ __('Contraseña') }}</label>
                             <input id="password" type="password" class="mt-2 form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                             @error('password')
@@ -33,12 +33,12 @@
                             @enderror
                         </div>
 
-                        <div class="form-group text-center mt-5">
+                        <div class="form-group text-center mt-2">
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Iniciar Sesión') }}
                             </button>
 
-                            <a class="mt-3 btn text-white border-0" href="{{ route('password.request') }}">
+                            <a class="mt-3 btn text-white border-0" href="{{ route('admin.password.request') }}">
     {{ __('Reestablecer contraseña') }}
 </a>
                         </div>

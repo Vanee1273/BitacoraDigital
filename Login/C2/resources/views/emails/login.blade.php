@@ -22,7 +22,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group mt-5">
+                        <div class="form-group mt-2">
                             <label for="password">{{ __('Contraseña') }}</label>
                             <input id="password" type="password" class="mt-2 form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                             @error('password')
@@ -32,7 +32,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group text-center mt-5">
+                        <div class="form-group text-center mt-2">
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Iniciar Sesión') }}
                             </button>
