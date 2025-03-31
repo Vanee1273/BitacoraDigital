@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Admin;
+use Illuminate\Support\Facades\Hash;
+
 
 class AuthController extends Controller
 {
@@ -54,65 +57,56 @@ class AuthController extends Controller
         ]);
     }
 
-    // Mostrar el formulario de inicio de sesión para administradores
     public function showAdminLoginForm()
     {
         return view('emails.loginAdmin');
     }
-
-// Procesar el inicio de sesión para administradores
-public function adminLogin(Request $request)
-{
-    $credentials = $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
-
-    // Buscar al administrador en la tabla "admins"
-    $admin = \App\Models\Admin::where('correo', $request->email)->first();
-
-    // Verificar si el administrador existe y si la contraseña es correcta
-    if ($admin && \Illuminate\Support\Facades\Hash::check($request->password, $admin->password)) {
-        // Autenticación exitosa
-        Auth::guard('admin')->login($admin); // Iniciar sesión como administrador
-        return redirect()->route('admin.welcome')->with('email', $request->email);
+    
+    public function adminLogin(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+    
+        $admin = Admin::where('correo', $request->email)->first();
+    
+        if ($admin && Hash::check($request->password, $admin->password)) {
+            Auth::guard('admin')->login($admin);
+            return redirect()->route('admin.welcome');
+        }
+    
+        return back()->withErrors([
+            'email' => 'Credenciales incorrectas o no tiene permisos de administrador',
+        ]);
     }
-
-    // Autenticación fallida
-    return back()->withErrors([
-        'email' => 'Las credenciales proporcionadas no coinciden con nuestros registros o no tienes permisos de administrador.',
-    ]);
-}
-
-// Mostrar la vista de bienvenida para administradores
-public function adminWelcome()
-{
-    if (!Auth::guard('admin')->check()) {
-        return redirect()->route('admin.login');
+    
+    public function adminWelcome()
+    {
+        if (!Auth::guard('admin')->check()) {
+            return redirect()->route('admin.login');
+        }
+    
+        $admin = Auth::guard('admin')->user();
+        
+        // Redirige a MenuAdmin.blade.php con los datos del admin
+        return view('Componentes.MenuAdmin', [
+            'admin' => $admin,
+            'name' => $admin->nombre,
+        ]);
     }
-
-    // Obtener el administrador autenticado
-    $admin = Auth::guard('admin')->user();
-
-    // Pasar el nombre y la contraseña real a la vista
-    return view('emails.inicioAdmin', [
-        'name' => $admin->nombre,
-        'password' => $admin->password, // Pasamos la contraseña real
-    ]);
-}
-
-// Cerrar sesión
-public function logout(Request $request)
-{
-    if (Auth::guard('admin')->check()) {
-        Auth::guard('admin')->logout();
-        return redirect()->route('admin.login')->with('message', 'Sesión de administrador cerrada correctamente.');
-    } elseif (Auth::check()) {
-        Auth::logout(); 
-        return redirect()->route('/')->with('message', 'Sesión cerrada correctamente.');
+    
+    public function logout(Request $request)
+    {
+        if (Auth::guard('admin')->check()) {
+            Auth::guard('admin')->logout();
+            $request->session()->invalidate();
+            return redirect()->route('admin.login');
+        }
+    
+        Auth::logout();
+        $request->session()->invalidate();
+        return redirect()->route('login');
     }
-
-    return redirect()->route('/');
-}
 
 }
