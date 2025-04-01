@@ -24,7 +24,7 @@
       
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('incidencias.noLeidas') }}">
+          <a class="nav-link" href="{{ route('welcome') }}">
             <i class="bi bi-house-door"></i> Inicio
           </a>
         </li>
