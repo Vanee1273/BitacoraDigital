@@ -23,7 +23,11 @@
       
       <ul class="nav flex-column">
         <li class="nav-item">
+<<<<<<< HEAD
           <a class="nav-link" href="{{route('admin.welcome')}}">
+=======
+          <a class="nav-link" href="{{ route('welcome') }}">
+>>>>>>> 850145fcbc1d761c66ae5fde10c59afea634fcd2
             <i class="bi bi-house-door"></i> Inicio
           </a>
         </li>

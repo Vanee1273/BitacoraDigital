@@ -67,6 +67,7 @@ class AlumnosController extends Controller
 
   public function index(Request $request)
   {
+<<<<<<< HEAD
       // Obtener los valores de filtro
       $grado = $request->input('grado');
       $grupo = $request->input('grupo');
@@ -92,4 +93,27 @@ class AlumnosController extends Controller
       return view('layoutsalumnos.indexalumnos', compact('name', 'alumnos'));
   }
   
+=======
+    // Obtener los valores de filtro
+    $grado = $request->input('grado');
+    $grupo = $request->input('grupo');
+
+    // Consulta base
+    $query = Alumnos::query();
+
+    // Aplicar filtros si se proporcionan
+    if (!empty($grado)) {
+      $query->where('Grado', $grado);
+    }
+    if (!empty($grupo)) {
+      $query->where('Grupo', $grupo);
+    }
+
+    // Obtener los alumnos filtrados con paginación
+    $alumnos = $query->paginate(10);
+
+    // Retornar la vista con los alumnos filtrados
+    return view('layoutsalumnos.indexalumnos', compact('alumnos'));
+  }
+>>>>>>> 850145fcbc1d761c66ae5fde10c59afea634fcd2
 }
