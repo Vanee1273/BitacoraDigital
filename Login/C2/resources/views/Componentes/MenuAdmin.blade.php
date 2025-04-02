@@ -16,35 +16,34 @@
         <h5 class="sidebar-title">
           <i class="bi bi-bootstrap fs-4 me-2"></i> Mi bitácora Digital
         </h5>
-        <div class="admin-info">
+         <!-- <div class="admin-info">
           <i class="bi bi-person-circle fs-4"></i>
-          <span>{{ $name }}</span>
-        </div>
+        </div> -->
       </div>
       
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('incidencias.noLeidas') }}">
+          <a class="nav-link" href="{{route('admin.welcome')}}">
             <i class="bi bi-house-door"></i> Inicio
           </a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="{{ route('incidencias.index') }}">
             <i class="bi bi-plus-lg"></i> Incidencias
           </a>
-        </li>
-        <li class="nav-item">
+        </li> -->
+        <!-- <li class="nav-item">
           <a class="nav-link" href="#">
             <i class="bi bi-people"></i> Grados y Grupos
           </a>
-        </li>
+        </li> -->
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="{{ route('alumnos.index') }}">
             <i class="bi bi-person"></i> Alumnos
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="{{ route('maestros.index') }}">
             <i class="bi bi-person"></i> Maestros
           </a>
         </li>
@@ -70,10 +69,6 @@
     <!-- Contenido principal -->
     <main class="p-3 flex-grow-1" id="mainContent">
       <div class="container-fluid">
-        <div class="alert alert-info d-flex align-items-center">
-          <i class="bi bi-info-circle-fill me-2"></i>
-          Bienvenido al panel de administración, {{ $name }}
-        </div>
         
         @yield('content')
       </div>

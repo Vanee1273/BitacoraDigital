@@ -1,157 +1,169 @@
 :root {
-    --sidebar-bg: #176298;
-    --sidebar-text: #ccf0ff;
-    --button-bg: #ccf0ff;
-    --button-text: white;
-    --content-bg: #ccf0ff;
-    --sidebar-width: 250px;
-    --sidebar-collapsed-width: 0px;
-    --toggle-button-size: 40px;
-    --toggle-button-offset: 10px;
-    --content-left-margin: 50px;
-    
-    --background-color: #ccf0ff; /* Fondo actualizado */
-    --title-font-size: 2.5rem;
-    --btn-font-size: 17px;
-    --btn-width: 300px;
-    --btn-primary-bg: #0056b3;
-    --btn-primary-hover: #ccf0ff;
-    --card-bg: #176298; /* Tarjeta con el color de fondo */
-    --card-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
-    --card-radius: 10%;
-    --navbar-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --navbar-btn-border: #176298;
-    --navbar-btn-color: #484848;
+  --primary-color: #176298;
+  --secondary-color: #ccf0ff;
+  --accent-color: #0056b3;
+  --text-color: #ffffff;
+  --background-color: #f4f7fc;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --btn-radius: 8px;
+  --card-radius: 12px;
+  --input-border: #176298;
+  --input-focus: #0056b3;
 }
 
 body {
-    background-color: var(--background-color);
-    font-size: 20px;
+  background-color: var(--background-color);
+  font-size: 18px;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  margin: 0;
 }
 
-/* Estilos para la página de inicio */
 .full-height {
-    height: 100vh;
+  height: 100vh;
 }
 
 .center-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
 }
 
 .title {
-    margin-bottom: 30px;
-    font-size: var(--title-font-size);
-    color: white; /* Título en blanco */
+  font-size: 2rem;
+  color: var(--primary-color);
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
+/* BOTONES */
 .btn-custom {
-    font-size: var(--btn-font-size);
-    font-weight: bold;
-    padding: 10px 20px;
-    width: var(--btn-width);
-    margin: 10px 0;
-}
-
-/* Estilos para la tarjeta */
-.card {
-    width: 360px;
-    height: 500px;
-    box-shadow: var(--card-shadow);
-    border-radius: var(--card-radius);
-    overflow: hidden;
-    background-color: var(--card-bg); /* Tarjeta con el color ajustado */
-    color: white; /* Todo el texto dentro de la tarjeta será blanco */
-}
-
-.card-body {
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-}
-
-.button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 24px;
+  width: 100%;
+  max-width: 280px;
+  border-radius: var(--btn-radius);
+  transition: all 0.3s ease-in-out;
+  border: none;
+  cursor: pointer;
 }
 
 .btn-primary {
-    background-color: white; /* Fondo blanco */
-    border: 2px solid #0056b3; /* Borde azul */
-    color: black; /* Letras negras */
-    width: 280px;
-    font-family: 'Inder', sans-serif;
-    font-size: 20px;
-    text-align: center;
+  background-color: var(--accent-color);
+  color: var(--text-color);
 }
 
 .btn-primary:hover {
-    background-color: #ccf0ff; /* Hover azul claro */
-    color: black; /* Letras negras en hover */
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
-.btn-secondary {
-    background-color: white; /* Fondo blanco */
-    border: 2px solid #0056b3; /* Borde azul */
-    color: black; /* Letras negras */
-    width: 280px;
-    font-family: 'Inder', sans-serif;
-    font-size: 20px;
-    text-align: center;
+/* CARD */
+.card {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  box-shadow: 0 8px 16px var(--shadow-color);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 20px;
+  margin: 10px;
 }
 
-.btn-secondary:hover {
-    background-color: white; /* Sin cambio de color en hover */
-    color: black; /* Letras negras */
+.card-header {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--secondary-color);
 }
 
-.btn-reset-password {
-    background-color: white; /* Fondo blanco */
-    border: 2px solid #0056b3; /* Borde azul */
-    color: black; /* Letras negras */
-    width: 280px;
-    font-family: 'Inder', sans-serif;
-    font-size: 20px;
-    text-align: center;
-    transition: none; /* Sin hover */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Estilos para el Navbar */
+/* FORMULARIOS */
+.form-group {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--input-border);
+  border-radius: 5px;
+  transition: border 0.3s ease-in-out;
+}
+
+.form-group input:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* NAVBAR */
 .navbar {
-    box-shadow: var(--navbar-shadow);
-    gap: 1rem;
+  background-color: var(--primary-color);
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.container {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Estilos para los botones del Navbar */
 .navbar .btn-primary {
-    background-color: var(--btn-primary-bg);
-    border: none;
-    color: var(--button-text);
-    font-family: 'Inder', sans-serif;
-    font-size: 20px;
+  background-color: var(--accent-color);
+  border: none;
+  color: var(--text-color);
 }
 
 .navbar .btn-outline-primary {
-    border-color: var(--navbar-btn-border);
-    color: var(--navbar-btn-color);
-    font-family: 'Inder', sans-serif;
-    font-size: 20px;
+  border: 2px solid var(--secondary-color);
+  color: var(--secondary-color);
 }
 
 .navbar .btn-outline-primary:hover {
-    background-color: var(--btn-primary-bg);
-    color: var(--button-text);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.card-header h3 {
+  color: white;
+}
+
+/* HACERLO RESPONSIVO */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .card {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  .btn-custom {
+    width: 100%;
+    max-width: 100%;
+  }
 }

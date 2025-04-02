@@ -5,7 +5,7 @@
   <h2 class="mb-4 text-center text-primary">📌 Incidencias No Leídas</h2>
 
   @if(session('success'))
-  <div class="alert alert-success text-center">{{ session('success') }}</div>
+  <div class="alert alert-success text-center">✅ {{ session('success') }}</div>
   @endif
 
   <div class="card shadow-lg p-4">
@@ -13,11 +13,11 @@
       <table class="table table-hover align-middle">
         <thead class="table-dark">
           <tr>
-            <th class="text-center">ID</th>
-            <th>Motivo</th>
-            <th>Descripción</th>
-            <th>Alumno</th>
-            <th class="text-center">Estado</th>
+            <th class="text-center">🔢 ID</th>
+            <th>📝 Motivo</th>
+            <th>🔍 Descripción</th>
+            <th>🎓 Alumno</th>
+            <th class="text-center">⚠️ Estado</th>
           </tr>
         </thead>
         <tbody>

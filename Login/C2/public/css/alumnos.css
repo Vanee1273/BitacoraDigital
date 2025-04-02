@@ -1,0 +1,15 @@
+.custom-status-badge {
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-weight: bold;
+  display: inline-block;
+  color: white;
+}
+
+.custom-active-status {
+  background-color: #28a745 !important;
+}
+
+.custom-inactive-status {
+  background-color: #dc3545 !important;
+}

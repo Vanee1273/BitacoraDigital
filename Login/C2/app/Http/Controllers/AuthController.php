@@ -61,6 +61,8 @@ class AuthController extends Controller
     {
         return view('emails.loginAdmin');
     }
+
+
     
     public function adminLogin(Request $request)
     {
