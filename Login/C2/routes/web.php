@@ -6,10 +6,7 @@ use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\AdminForgotPasswordController;
 use App\Http\Controllers\IncidenciasController;
 use App\Http\Controllers\AlumnosController;
-<<<<<<< HEAD
 use App\Http\Controllers\MaestrosController;
-=======
->>>>>>> 850145fcbc1d761c66ae5fde10c59afea634fcd2
 
 // Ruta principal
 Route::get('/', function () {
@@ -87,7 +84,6 @@ Route::post('alumnos', [AlumnosController::class, 'store'])->name('alumnos.store
 Route::post('alumnos/{id}/dar-de-baja', [AlumnosController::class, 'darDeBaja'])->name('alumnos.darDeBaja');
 // Ruta para dar de alta al alumno
 Route::post('alumnos/dar-de-alta/{id}', [AlumnosController::class, 'darDeAlta'])->name('alumnos.darDeAlta');
-<<<<<<< HEAD
 
 // RUTAS PARA MAESTROS 
 Route::get('/maestros', [MaestrosController::class, 'index'])->name('maestros.index');
@@ -96,5 +92,3 @@ Route::post('/maestros', [MaestrosController::class, 'store'])->name('maestros.s
 Route::get('/maestros/{id}/edit', [MaestrosController::class, 'edit'])->name('maestros.edit');
 Route::put('/maestros/{id}', [MaestrosController::class, 'update'])->name('maestros.update');
 Route::delete('/maestros/{id}', [MaestrosController::class, 'destroy'])->name('maestros.destroy');
-=======
->>>>>>> 850145fcbc1d761c66ae5fde10c59afea634fcd2

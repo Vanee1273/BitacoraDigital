@@ -20,13 +20,8 @@
         </li>
         <li class="nav-item">
         <li class="nav-item"><a class="nav-link" href="{{ route('incidencias.index') }}"><i class="bi bi-plus-lg"></i>Incidencia</a></li>
-<<<<<<< HEAD
         <!-- <li class="nav-item"><a class="nav-link" href="{{ route('alumnos.index') }}"><i class="bi bi-people"></i> Alumnos</a></li>
         <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-person"></i> Profesores</a></li> -->
-=======
-        <li class="nav-item"><a class="nav-link" href="{{ route('alumnos.index') }}"><i class="bi bi-people"></i> Alumnos</a></li>
-        <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-person"></i> Profesores</a></li>
->>>>>>> 850145fcbc1d761c66ae5fde10c59afea634fcd2
         </li>
       </ul>
       <ul class="nav flex-column account">

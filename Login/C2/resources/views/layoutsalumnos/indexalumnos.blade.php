@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 @extends('Componentes.menuAdmin')
-=======
-@extends('Componentes.menu')
->>>>>>> 850145fcbc1d761c66ae5fde10c59afea634fcd2
 @section('content')
 <link href="{{ asset('css/alumnos.css') }}" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
