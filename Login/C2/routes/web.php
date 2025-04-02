@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminForgotPasswordController;
 use App\Http\Controllers\IncidenciasController;
 use App\Http\Controllers\AlumnosController;
 use App\Http\Controllers\MaestrosController;
+use Psy\Readline\Hoa\Autocompleter;
 
 // Ruta principal
 Route::get('/', function () {
@@ -34,26 +35,30 @@ Route::get('/admin/login', function () {
 
 
 // Rutas de administrador
-Route::prefix('admin')->group(function() {
+Route::prefix('admin')->group(function () {
   Route::get('/login', [AuthController::class, 'showAdminLoginForm'])->name('admin.login');
   Route::post('/login', [AuthController::class, 'adminLogin'])->name('admin.login.submit');
+  //Admin incidencias
   Route::get('/welcome', [AuthController::class, 'adminWelcome'])->name('admin.welcome')->middleware('auth:admin');
+
+  Route::post('/reporte/{id}/leido', [AuthController::class, 'marcarComoLeido'])->name('reporte.leido');
+
   Route::post('/logout', [AuthController::class, 'logout'])->name('admin.logout');
 
-    // Solicitud de restablecimiento
-    Route::get('/password/reset', [AdminForgotPasswordController::class, 'showLinkRequestForm'])
-         ->name('admin.password.request');
-         
-    Route::post('/password/email', [AdminForgotPasswordController::class, 'sendResetLinkEmail'])
-         ->name('admin.password.email');
-    
-    // Formulario de nueva contraseña
-    Route::get('/password/reset/{token}', [AdminForgotPasswordController::class, 'showResetForm'])
-         ->name('admin.password.reset');
-    
-    // Actualización de contraseña
-    Route::post('/password/reset', [AdminForgotPasswordController::class, 'reset'])
-         ->name('admin.password.update');
+  // Solicitud de restablecimiento
+  Route::get('/password/reset', [AdminForgotPasswordController::class, 'showLinkRequestForm'])
+    ->name('admin.password.request');
+
+  Route::post('/password/email', [AdminForgotPasswordController::class, 'sendResetLinkEmail'])
+    ->name('admin.password.email');
+
+  // Formulario de nueva contraseña
+  Route::get('/password/reset/{token}', [AdminForgotPasswordController::class, 'showResetForm'])
+    ->name('admin.password.reset');
+
+  // Actualización de contraseña
+  Route::post('/password/reset', [AdminForgotPasswordController::class, 'reset'])
+    ->name('admin.password.update');
 });
 
 // Ruta para cerrar sesión

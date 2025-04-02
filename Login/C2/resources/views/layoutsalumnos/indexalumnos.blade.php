@@ -40,18 +40,18 @@
       <form method="GET" action="{{ route('alumnos.index') }}">
         <div class="d-flex">
           <select class="form-select me-2" name="grado" id="grado">
-            <option value="">🎓 Seleccionar Grado</option>
+            <option value=""> Seleccionar Grado</option>
             @foreach (["1", "2", "3", "4", "5", "6"] as $grado)
             <option value="{{ $grado }}" {{ request()->grado == $grado ? 'selected' : '' }}>{{ $grado }}</option>
             @endforeach
           </select>
           <select class="form-select" name="grupo" id="grupo">
-            <option value="">🔤 Seleccionar Grupo</option>
+            <option value=""> Seleccionar Grupo</option>
             @foreach (["A", "B", "C"] as $grupo)
             <option value="{{ $grupo }}" {{ request()->grupo == $grupo ? 'selected' : '' }}>{{ $grupo }}</option>
             @endforeach
           </select>
-          <button type="submit" class="btn btn-primary ms-2">🔍 Filtrar</button>
+          <button type="submit" class="btn btn-primary ms-2"> Filtrar</button>
         </div>
       </form>
     </div>
@@ -67,9 +67,9 @@
     <li class="list-group-item d-flex justify-content-between align-items-center">
       <div>
         <h5 class="mb-1">{{ $alumno->Nombre }} {{ $alumno->Apellidos }}</h5>
-        <p class="mb-1"><strong>🆔 Número de Control:</strong> {{ $alumno->id }}</p>
-        <p class="mb-1"><strong>🎓 Grado:</strong> {{ $alumno->Grado }} <strong>🔤 Grupo:</strong> {{ $alumno->Grupo }}</p>
-        <p class="mb-1"><strong>⚙️ Estado:</strong>
+        <p class="mb-1"><strong> Número de Control:</strong> {{ $alumno->id }}</p>
+        <p class="mb-1"><strong> Grado:</strong> {{ $alumno->Grado }} <strong> Grupo:</strong> {{ $alumno->Grupo }}</p>
+        <p class="mb-1"><strong> Estado:</strong>
           <span class="badge {{ $alumno->Status === 'Activo' ? 'bg-success' : 'bg-danger' }}">{{ $alumno->Status }}</span>
         </p>
       </div>
@@ -101,18 +101,18 @@
         <form method="POST" action="{{ route('alumnos.store') }}">
           @csrf
           <div class="form-group mb-3">
-            <label for="Nombre" class="form-label">🔤 Nombre</label>
+            <label for="Nombre" class="form-label"> Nombre</label>
             <input type="text" name="Nombre" id="Nombre" class="form-control" placeholder="Nombre" required>
           </div>
 
           <div class="form-group mb-3">
-            <label for="Apellidos" class="form-label">🧑‍🤝‍🧑 Apellidos</label>
+            <label for="Apellidos" class="form-label"> Apellidos</label>
             <input type="text" name="Apellidos" id="Apellidos" class="form-control" placeholder="Apellidos" required>
           </div>
 
           <!-- Campo Grado -->
           <div class="form-group mb-3">
-            <label for="Grado" class="form-label">🎓 Grado</label>
+            <label for="Grado" class="form-label"> Grado</label>
             <select name="Grado" id="Grado" class="form-select" required>
               <option value="1">Primero</option>
               <option value="2">Segundo</option>
@@ -125,7 +125,7 @@
 
           <!-- Campo Grupo -->
           <div class="form-group mb-3">
-            <label for="Grupo" class="form-label">🔤 Grupo</label>
+            <label for="Grupo" class="form-label"> Grupo</label>
             <select name="Grupo" id="Grupo" class="form-select" required>
               <option value="A">A</option>
               <option value="B">B</option>
@@ -135,7 +135,7 @@
 
           <!-- Campo Estado -->
           <div class="form-group mb-3">
-            <label for="Status" class="form-label">⚙️ Estado</label>
+            <label for="Status" class="form-label">  Estado</label>
             <select name="Status" id="Status" class="form-select" required>
               <option value="Activo">Activo</option>
               <option value="Inactivo">Inactivo</option>

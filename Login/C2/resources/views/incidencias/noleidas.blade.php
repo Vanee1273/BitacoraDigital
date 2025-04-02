@@ -13,11 +13,11 @@
       <table class="table table-hover align-middle">
         <thead class="table-dark">
           <tr>
-            <th class="text-center">🔢 ID</th>
-            <th>📝 Motivo</th>
-            <th>🔍 Descripción</th>
-            <th>🎓 Alumno</th>
-            <th class="text-center">⚠️ Estado</th>
+            <th class="text-center"> ID</th>
+            <th> Motivo</th>
+            <th> Descripción</th>
+            <th> Alumno</th>
+            <th class="text-center"> Estado</th>
           </tr>
         </thead>
         <tbody>

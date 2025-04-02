@@ -20,19 +20,17 @@
         </li>
         <li class="nav-item">
         <li class="nav-item"><a class="nav-link" href="{{ route('incidencias.index') }}"><i class="bi bi-plus-lg"></i>Incidencia</a></li>
-        <!-- <li class="nav-item"><a class="nav-link" href="{{ route('alumnos.index') }}"><i class="bi bi-people"></i> Alumnos</a></li>
-        <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-person"></i> Profesores</a></li> -->
         </li>
       </ul>
       <ul class="nav flex-column account">
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="bi bi-person-gear"></i> Account</a>
-        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="#"><i class="bi bi-person-gear"></i> Mi cuenta</a>
+        </li> -->
         <li class="nav-item">
           <form action="{{ route('logout') }}" method="POST" style="display: inline;">
             @csrf
             <button type="submit" class="nav-link" style="background: none; border: none; padding: 0; color: inherit; cursor: pointer;">
-              <i class="bi bi-box-arrow-right"></i> Logout
+              <i class="bi bi-box-arrow-right"></i> Cerrar sesión
             </button>
           </form>
         </li>

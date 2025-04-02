@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
 
 <body>
-<div class="d-flex">
+  <div class="d-flex">
     <!-- Botón para toggle del sidebar -->
     <button class="sidebar-toggle" id="toggleSidebar">
       <i class="bi bi-chevron-left"></i>
@@ -16,27 +16,14 @@
         <h5 class="sidebar-title">
           <i class="bi bi-bootstrap fs-4 me-2"></i> Mi bitácora Digital
         </h5>
-         <!-- <div class="admin-info">
-          <i class="bi bi-person-circle fs-4"></i>
-        </div> -->
       </div>
-      
+
       <ul class="nav flex-column">
         <li class="nav-item">
           <a class="nav-link" href="{{route('admin.welcome')}}">
             <i class="bi bi-house-door"></i> Inicio
           </a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="{{ route('incidencias.index') }}">
-            <i class="bi bi-plus-lg"></i> Incidencias
-          </a>
-        </li> -->
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="bi bi-people"></i> Grados y Grupos
-          </a>
-        </li> -->
         <li class="nav-item">
           <a class="nav-link" href="{{ route('alumnos.index') }}">
             <i class="bi bi-person"></i> Alumnos
@@ -48,13 +35,8 @@
           </a>
         </li>
       </ul>
-      
+
       <ul class="nav flex-column account">
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="bi bi-person-gear"></i> Mi cuenta
-          </a>
-        </li>
         <li class="nav-item">
           <form action="{{ route('admin.logout') }}" method="POST">
             @csrf
@@ -65,11 +47,8 @@
         </li>
       </ul>
     </nav>
-
-    <!-- Contenido principal -->
     <main class="p-3 flex-grow-1" id="mainContent">
       <div class="container-fluid">
-        
         @yield('content')
       </div>
     </main>
