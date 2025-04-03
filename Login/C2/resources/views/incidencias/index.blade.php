@@ -12,12 +12,12 @@
         <form action="{{ route('incidencias.index') }}" method="GET" class="me-2 w-50">
           <div class="input-group">
             <span class="input-group-text"><i class="bi bi-search"></i></span>
-            <input type="text" name="search" class="form-control" placeholder="🔍 Buscar incidencias..." value="{{ $searchTerm ?? '' }}">
+            <input type="text" name="search" class="form-control" placeholder=" Buscar incidencias..." value="{{ $searchTerm ?? '' }}">
             <button type="submit" class="btn btn-outline-secondary">Buscar</button>
           </div>
         </form>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createIncidentModal">
-           ➕ Nueva Incidencia
+          ➕ Nueva Incidencia
         </button>
       </div>
 
@@ -26,10 +26,10 @@
         <table class="table table-hover">
           <thead>
             <tr>
-              <th>📝 Motivo</th>
-              <th>🔍 Descripción</th>
+              <th> Motivo</th>
+              <th> Descripción</th>
               <th> Status</th>
-              <th>⚙️ Acción</th>
+              <th> Acción</th>
             </tr>
           </thead>
           <tbody>
@@ -48,13 +48,13 @@
               <td>
                 <div class="btn-group" role="group">
                   <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#viewIncidentModal{{ $incidencia->id }}">
-                    <i class="bi bi-eye"></i> 
+                    <i class="bi bi-eye"></i>
                   </button>
                   <button type="button" class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editIncidentModal{{ $incidencia->id }}">
-                    <i class="bi bi-pencil"></i> 
+                    <i class="bi bi-pencil"></i>
                   </button>
                   <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteIncidentModal{{ $incidencia->id }}">
-                    <i class="bi bi-trash"></i> 
+                    <i class="bi bi-trash"></i>
                   </button>
                 </div>
               </td>
@@ -68,6 +68,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
+                    <p><strong>Alumno:</strong> {{ $incidencia->alumno->Nombre }}</p>
                     <p><strong>Motivo:</strong> {{ $incidencia->Motivos }}</p>
                     <p><strong>Descripción:</strong> {{ $incidencia->Descripción }}</p>
                     <p><strong>Status:</strong> <span class="badge {{ [
@@ -76,9 +77,39 @@
                                     ][$incidencia->Status] ?? 'bg-secondary' }}">
                         {{ $incidencia->Status }}
                       </span></p>
-                    <p><strong>Alumno:</strong> {{ $incidencia->alumno->Nombre }}</p> <!-- Mostrar el nombre del alumno -->
                   </div>
                   <a href="{{ route('incidencias.pdf', $incidencia->id) }}" class="btn btn-primary w-100">📄 Exportar a PDF</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal para editar incidencia -->
+            <div class="modal fade" id="editIncidentModal{{ $incidencia->id }}" tabindex="-1" aria-labelledby="editIncidentModalLabel{{ $incidencia->id }}"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header bg-light">
+                    <h5 class="modal-title">Editar Incidencia</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form method="POST" action="{{ route('incidencias.update', $incidencia->id) }}">
+                      @csrf
+                      @method('PUT')
+                      <div class="mb-3">
+                        <p><strong>Alumno:</strong> {{ $incidencia->alumno->Nombre }}</p>
+                      </div>
+                      <div class="mb-3">
+                        <p><label class="form-label">Motivo</label></p>
+                        <input type="text" class="form-control" name="Motivos" value="{{ $incidencia->Motivos }}" required>
+                      </div>
+                      <div class="mb-3">
+                        <p><label class="form-label">Descripción</label></p>
+                        <textarea class="form-control" name="Descripción" rows="3" required>{{ $incidencia->Descripción }}</textarea>
+                      </div>
+                      <button type="submit" class="btn btn-success">Actualizar</button>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
@@ -93,6 +124,7 @@
                   </div>
                   <div class="modal-body">
                     <p>¿Estás seguro de que deseas eliminar esta incidencia?</p>
+                    <p><strong>Alumno:</strong> {{ $incidencia->alumno->Nombre }}</p>
                     <p><strong>Motivo:</strong> {{ $incidencia->Motivos }}</p>
                     <p><strong>Descripción:</strong> {{ $incidencia->Descripción }}</p>
                   </div>
@@ -139,15 +171,15 @@
         <form id="save-form" method="POST" action="{{ route('incidencias.store') }}">
           @csrf
           <div class="mb-3">
-            <label class="form-label">📝 Motivo</label>
+            <label class="form-label"> Motivo</label>
             <input type="text" class="form-control" required name="Motivos">
           </div>
           <div class="mb-3">
-            <label class="form-label">🔍 Descripción</label>
+            <label class="form-label"> Descripción</label>
             <textarea class="form-control" rows="3" required name="Descripción"></textarea>
           </div>
           <div class="mb-3">
-            <label class="form-label">🎓 Alumno</label>
+            <label class="form-label"> Alumno</label>
             <select class="form-select" name="FKIDAlumno" required>
               <option value="">Selecciona un alumno</option>
               @foreach($alumnos as $alumno)
